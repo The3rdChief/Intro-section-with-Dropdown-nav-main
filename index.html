@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Intro section with dropdown navigation</title>
+  <link rel="stylesheet" href="./src/output.css">
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap');
+    .attribution { font-size: 11px; text-align: center; margin-block-start: 6rem;}
+    .attribution a { color: hsl(228, 45%, 44%); }
+    
+    ion-icon {
+      display: inline-flex;
+      transform: translateY(.5px);
+    }
+    box-icon {
+      transform: translateY(-2px);
+    }
+    .accordion {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: all .3s;
+    }
+    .accordion > div {
+      overflow: hidden;
+      margin-inline-start: 1rem;
+      @media (width > 768px) {
+        margin-inline-start: 0rem;
+      }
+    }
+    .accordion.open {
+      grid-template-rows: 1fr;
+    }
+    .accordion.open > div {
+      padding-block-start: .25rem;
+    }
+  </style>
+
+  <script src="./src/script.js" defer></script>
+</head>
+
+<body class="min-h-screen bg-bg-clr w-screen overflow-x-hidden relative
+             md:gap-10 md:flex md:flex-col font-[Epilogue]">
+
+  <div id="cover" class="md:hidden absolute inset-0 z-10 bg-opacity-25 bg-almost-black">
+  </div>
+
+  <header class="flex items-center justify-between p-6 w-full text-md-gray gap-12">
+      <!-- Logo -->
+      <div>
+        <img src="./images/logo.svg" alt="">
+      </div>
+      <!-- End of Logo -->
+      
+      <!-- Open-nav button -->
+       <div id="open-nav-btn" class="cursor-pointer md:hidden">
+        <img src="./images/icon-menu.svg">
+       </div>
+      <!-- End of Open-nav button -->
+
+      <!-- Nav section -->
+      <nav data-state="closed" class="absolute z-40 md:relative md:bg-opacity-0 bg-[white]
+                  top-0 bottom-0 right-[-100%] md:right-0 w-[65%]
+                  pt-[4.7rem] md:pt-0 md:p-0 p-9 md:duration-0 transition-[right] duration-300
+                  flex flex-col items-start justify-start gap-6 md:flex-row md:flex-1 md:justify-between md:items-center">
+
+        <!-- Close btn -->
+          <div id="close-nav-btn" class="md:hidden absolute top-[1.5rem] right-[1.5rem] cursor-pointer">
+          <img src="./images/icon-close-menu.svg">
+          </div>
+        <!-- End of Close btn -->
+
+        <!-- nav list Items -->
+        <ul class="list-none flex flex-col md:flex-row md:items-center md:gap-6 gap-3 
+                    w-full md:w-max
+                   [&>li]:cursor-pointer [&>li]:flex
+                   [&>li]:items-start
+                   [&>li]:transition-colors [&>li]:duration-300">
+
+          <li class="group flex-col w-full md:w-max md:relative">
+
+            <div class="flex items-center gap-1 md:gap-1 open-accordion hover:text-almost-black"> Features <ion-icon name="chevron-down-outline"></ion-icon> </div>
+
+            <ul class="accordion w-full md:w-max md:absolute md:bg-[white] md:shadow-2xl
+                        md:rounded-lg md:top-[120%] md:right-0 md:z-40">
+
+              <div class="flex flex-col items-start gap-1.5 w-full md:w-max
+                          [&>li]:flex [&>li]:items-center [&>li]:gap-1.5 [&>li]:transition-colors [&>li]:duration-200">
+
+                <li class="hover:text-almost-black md:pr-4 md:pl-6 md:pt-3">
+                  <box-icon type='solid' name='calendar' size="17px" color="maroon"></box-icon> Todo List
+                </li>
+                <li class="hover:text-almost-black md:pr-4 md:pl-6">
+                  <box-icon name='calendar-event' size="17px" color="lightblue"></box-icon> Calendar
+                </li>
+                <li class="hover:text-almost-black md:pr-4 md:pl-6">
+                  <box-icon type='solid' name='bell' size="17px" color="gold"></box-icon> Reminders
+                </li>
+                <li class="hover:text-almost-black md:pr-4 md:pl-6 md:pb-3">
+                  <box-icon type='solid' name='time' size="17px" color="purple"></box-icon> Planning
+                </li>
+              </div>
+              
+            </ul>
+          </li>
+
+          <li class="group flex-col w-full md:w-max md:relative">
+            <div class="flex items-center gap-1 md:gap-1 open-accordion hover:text-almost-black"> Company <ion-icon name="chevron-down-outline"></ion-icon> </div>
+            <ul class="accordion w-full md:w-max md:absolute md:bg-[white] md:shadow-2xl
+                       md:rounded-lg md:top-[120%] md:left-0 md:z-40">
+              <div class=" flex flex-col items-start gap-1.5 w-full md:w-max
+                          [&>li]:flex [&>li]:items-center [&>li]:gap-3 [&>li]:transition-colors [&>li]:duration-200">
+                <li class="hover:text-almost-black md:pr-4 md:pl-6 md:pt-3">History</li>
+                <li class="hover:text-almost-black md:pr-4 md:pl-6">Our Team</li>
+                <li class="hover:text-almost-black md:pr-4 md:pl-6 md:pb-3">Blog</li>
+              </div>
+              
+            </ul>
+          </li>
+          <li class="hover:text-almost-black">Careers</li>
+          <li class="hover:text-almost-black">About</li>
+        </ul>
+        <!-- End of nav list Items -->
+
+        <!-- Call-to-action buttons -->
+        <div class="flex md:flex-row md:w-max w-full flex-col gap-3 items-center
+                    [&>button]:px-5 [&>button]:py-2 [&>button]:rounded-md [&>button]:transition-colors [&>button]:duration-300">
+          <button class="hover:text-almost-black">
+            Login
+          </button>
+          <button class="border border-almost-black hover:text-almost-black">
+            Register
+          </button>
+        </div>
+        <!-- End of Call-to-action buttons -->
+      </nav>
+      <!-- End of Nav section -->
+
+  </header>
+
+  <main class="md:w-11/12 w-full  md:max-w-[1300px] m-auto
+               flex flex-col md:flex-row items-center
+               gap-x-12 md:h-max lg:items-end lg:gap-x-32">
+    <!-- Ilustration -->
+     <picture class="order-1 md:order-2 h-full">
+        <source media="(min-width:768px)" srcset="./images/image-hero-desktop.png">
+        <img src="./images/image-hero-mobile.png">
+     </picture>
+    <!-- End of Ilustration -->
+
+    <section class="order-2 md:order-1 pt-12 lg:gap-12
+                    text-center md:text-left flex flex-col gap-6
+                    md:items-start items-center">
+      <h1 class="text-4xl font-bold md:text-7xl">
+        Make<wbr> remote work
+      </h1>
+      <p class="text-md-gray text-[18px]">
+        Get your team in sync, no matter your location. Streamline processes, 
+        create team rituals, and watch productivity soar.
+      </p>
+      <button class="rounded-md bg-almost-black text-almost-white
+                     px-6 py-3 border border-bg-clr hover:bg-bg-clr hover:border-almost-black
+                     hover:text-almost-black transition-colors duration-300">
+        Learn more
+      </button>
+
+      <div class="grid gap-6 items-center justify-between grid-cols-4 md:px-0 px-4 mt-6">
+        <img src="./images/client-databiz.svg">
+        <img src="./images/client-audiophile.svg">
+        <img src="./images/client-meet.svg">
+        <img src="./images/client-maker.svg">
+      </div>
+    </section>
+    
+
+    
+  
+    
+  </main>
+ 
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="https://iCodeThis.com/?ref=The3rdchief" target="_blank">Benedict Jr</a>.
+  </div>
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
